@@ -1,18 +1,5 @@
 import { faker } from '@faker-js/faker';
 
-// function generateArticle() {
-//   return {
-//     title: faker.lorem.sentence(),
-//     description: faker.lorem.sentences(2),
-//     content: faker.lorem.paragraphs(2),
-//     tags: [
-//       faker.lorem.word(),
-//       faker.lorem.word(),
-//       faker.lorem.word()
-//     ]
-//   };
-// }
-
 describe('Articles flow', () => {
   let user;
   let article;
