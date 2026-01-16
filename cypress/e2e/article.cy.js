@@ -48,8 +48,8 @@ describe('Articles flow', () => {
     cy.createArticle(article.title, article.description, article.body);
     cy.visit(`/profile/${user.username}`);
     cy.contains('h1', article.title).click();
-    cy.contains('button', 'Delete Article').click();
     cy.on('window:confirm', () => true);
+    cy.contains('button', 'Delete Article').click();
     cy.location('pathname').should('eq', '/');
     cy.visit(`/profile/${user.username}`);
     cy.contains(article.title).should('not.exist');
