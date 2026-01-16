@@ -30,10 +30,8 @@ describe('Articles flow', () => {
     cy.visit('/');
     cy.login(user.email, user.username, user.password);
   });
-
   it('should create an article', () => {
     cy.visit('/editor');
-
     cy.get('input[placeholder="Article Title"]').type(article.title);
     cy.get('input[placeholder="What\'s this article about?"]')
       .type(article.description);
@@ -43,16 +41,16 @@ describe('Articles flow', () => {
       cy.get('input[placeholder="Enter tags"]').type(tag + '{enter}');
     });
     cy.contains('button', 'Publish Article').click();
-
     cy.contains('h1', article.title).should('be.visible');
   });
 
   it('should delete article', () => {
     cy.createArticle(article.title, article.description, article.body);
-
     cy.visit(`/profile/${user.username}`);
     cy.contains('h1', article.title).click();
     cy.contains('button', 'Delete Article').click();
+    cy.on('window:confirm', () => true);
+    cy.location('pathname').should('eq', '/');
     cy.visit(`/profile/${user.username}`);
     cy.contains(article.title).should('not.exist');
   });
